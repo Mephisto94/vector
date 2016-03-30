@@ -7,19 +7,19 @@ Vector::Vector() {
 }
 
 Vector::Vector(double number) {
-    for (unsigned int i = 0; i < n; i++) {
+    for (unsigned long i = 0; i < n; i++) {
         coords_[i] = number;
     }
 }
 
 Vector::Vector(const Vector &object) {
-    for (unsigned int i = 0; i < n; i++) {
+    for (unsigned long i = 0; i < n; i++) {
         coords_[i] = object.coords_[i];
     }
 }
 
 Vector &Vector::operator=(const Vector &object) {
-    for (unsigned int i = 0; i < n; i++) {
+    for (unsigned long i = 0; i < n; i++) {
         coords_[i] = object.coords_[i];
     }
     return *this;
@@ -34,31 +34,31 @@ double &Vector::operator[](unsigned long i) {
 }
 
 Vector &Vector::operator+=(const Vector &object) {
-    for (unsigned int i = 0; i < n; i++)
+    for (unsigned long i = 0; i < n; i++)
         coords_[i] += object.coords_[i];
     return *this;
 }
 
 Vector &Vector::operator-=(const Vector &object) {
-    for (unsigned int i = 0; i < n; i++)
+    for (unsigned long i = 0; i < n; i++)
         coords_[i] -= object.coords_[i];
     return *this;
 }
 
 Vector &Vector::operator*=(double number) {
-    for (unsigned int i = 0; i < n; i++)
+    for (unsigned long i = 0; i < n; i++)
         coords_[i] *= number;
     return *this;
 }
 
 Vector &Vector::operator/=(double number) {
-    for (unsigned int i = 0; i < n; i++)
+    for (unsigned long i = 0; i < n; i++)
         coords_[i] /= number;
     return *this;
 }
 
 bool operator==(const Vector &lhs, const Vector &rhs) {
-    for (unsigned int i = 0; i < Vector::n; i++) {
+    for (unsigned long i = 0; i < Vector::n; i++) {
         if (lhs.coords_[i] != rhs.coords_[i]) {
             return false;
         }
@@ -98,16 +98,15 @@ Vector operator/(const Vector &lhs, double number) {
 
 double operator^(const Vector &lhs, const Vector &rhs) {
     double result = 0;
-    for (unsigned int i = 0; i < Vector::n; i++) {
+    for (unsigned long i = 0; i < Vector::n; i++) {
         result += lhs.coords_[i] * rhs.coords_[i];
     }
     return result;
 }
 
 Vector Vector::operator-() const {
-    Vector new_vector;
-    for (unsigned int i = 0; i < n; i++)
-        new_vector.coords_[i] = (-1) * coords_[i];
+    Vector new_vector(*this);
+    new_vector*=-1;
     return new_vector;
 }
 
